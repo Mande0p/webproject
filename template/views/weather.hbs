@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Josefin+Sans:wght@300&family=Jost:ital@1&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+
+<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/869/869869.png" type="image/x-icon">
+
+ {{>css}}
+    
+</head>
+<body>
+    {{>header}}
+   <div id="weather">
+    <div class="main_div" >
+        <div class="input_box">
+            <form class="city">
+            <input type="text" name="input" id="name_city" placeholder="Enter city name"   >
+            <input type="submit" value="Search"  id="submit" >
+            </form>
+        </div>
+
+        <div class="output_div">
+            <span id="day"></span>
+            {{!-- <span id="full_year"></span> --}}
+             <span id="time"></span>   
+        </div>
+
+        <div class="output_temp" id="main">
+             <span id="city"></span>
+            {{!-- <span id="country"> in</span> --}}
+            <span id="temp"></span>
+            
+        </div>
+        
+    </div>
+    <div id="weatherimg_box" >
+     <div id="weather_img"> </div>
+
+        <div class="status_txt">
+        <span  id="status">clear</span>
+         </div>
+        
+         </div>
+        
+       
+
+ 
+   
+   </div>
+    {{>footer}}
+    <script>
+        
+        const weather_img=document.getElementById("weather_img")
+      const weatherimg_box=document.getElementById("weatherimg_box")
+            const tim_e=document.getElementById("time")
+            const status_txt=document.getElementById("status")
+    // const full_year=document.getElementById("full_year")
+    const day=document.getElementById("day")
+       const name_city=document.getElementById("name_city")
+           const submit=document.getElementById("submit")
+            // const country=document.getElementById("country")
+             const temp=document.getElementById("temp")
+             const city=document.getElementById("city")
+
+           const messag=async (event)=>{
+               event.preventDefault()
+              let cityval=name_city.value;
+        
+                if(cityval===""){
+                   city.innerHTML=`please enter the city name `
+                   //temp enabled when something is not good
+                temp.style.display="none";
+                //time disabled when something is not good
+              day.style.display="none";
+               // full_year.style.display="none";
+                tim_e.style.display="none";
+                 weatherimg_box.style.display="none"
+                
+                }
+                else{
+                    try{
+                    let url=`https://api.openweathermap.org/data/2.5/weather?q=${cityval}&appid=33745f4527eeff990aca6c5d5ce7f7c1`
+
+                    const data= await fetch(url)
+                    const obj=await data.json()
+                    const city_name=obj.name;
+                    const country_n=obj.sys.country;
+                    const status_val=  obj.weather[0].main;
+
+                    console.log(status_val)
+                    //second div weatehrimg_box
+                       
+                    status_txt.innerHTML=`${status_val}` //setting text of weather
+
+                    if((status_val==="Clear") || (status_val==="Rain") ||(status_val==="Clouds"))
+                    {
+                    if(status_val==="Clear"){
+                       weather_img.style.backgroundImage="url('https://www.animatedimages.org/data/media/278/animated-sun-image-0856.gif')";
+                        weather_img.style.backgroundSize="cover";
+                      weatherimg_box.style.display="flex";
+                    }
+                     
+                    if(status_val==="Clouds"){
+                           weather_img.style.backgroundImage="url('https://i.gifer.com/4jwl.gif')";
+                        weather_img.style.backgroundSize="cover";
+                          weatherimg_box.style.display="flex";
+                    }
+                          
+                        if(status_val=="Rain"){
+                                 weather_img.style.backgroundImage="url('https://www.animatedimages.org/data/media/361/animated-cloud-image-0011.gif') ";
+                                weather_img.style.backgroundSize="cover";
+                             weatherimg_box.style.display="flex";
+                             }
+                    }
+                    else{
+                       weather_img.style.display="none";
+                      weatherimg_box.style.display="flex";
+
+                    }
+                      
+                            /* else{
+                              weather_img.style.backgroundImage="url(https://www.animatedimages.org/data/media/361/animated-cloud-image-0033.gif')";
+                        weather_img.style.backgroundSize="cover";
+                          weatherimg_box.style.display="flex";//temprary code
+
+                             }*/
+                             
+                             
+                    
+                        
+                     
+
+                    
+                    //changing temp in ℃ and fill the value
+                     const tem_p=Math.round((obj.main.feels_like)-273.15);
+                      temp.innerHTML=`${tem_p}℃`;
+                      city.innerHTML=`${city_name} ${country_n}`
+
+                   //temprature enabled when everything is perfact
+                       temp.style.display="flex"
+
+                       //time enabled when everything is perfact
+                       day.style.display="flex";
+              //  full_year.style.display="flex";
+                tim_e.style.display="flex";
+                
+                      }catch(err){
+            console.log(err)
+                        city.innerHTML=`plese enter vaild name`
+                         temp.style.display="none"
+                        //console.log(err)
+                day.style.display="none";
+             //   full_year.style.display="none";
+                tim_e.style.display="none";
+                 weatherimg_box.style.display="none"
+                      }
+                      
+                    
+                }
+               
+             
+              const time=()=>{
+
+           const D= new Date()
+           let  Dat_e,month, year,time_h,time_m,day_weak;
+           Dat_e=D.getDate()
+           time_h=D.getHours()
+           time_m=D.getMinutes()
+           day_weak=D.getDay()
+          
+{{!-- console.log(day_weak) --}}
+    const arr=['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri','Sat']
+ const weekday=arr[day_weak]
+ let period="am"
+ if(time_h >11){
+     period="pm"
+     if(time_h >12) {
+time_h=time_h-12
+}
+ }
+ day.innerHTML=`${weekday}`
+//full_year.innerHTML= `${Dat_e}/${month}/${year}`
+if(time_m>9){
+tim_e.innerHTML = `${time_h}:${time_m}${period}`  
+}else{
+    tim_e.innerHTML = `${time_h}:0${time_m}${period}`  
+
+}
+       }
+
+           time()
+
+            
+           }
+           submit.addEventListener("click",messag)
+
+       
+
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Josefin+Sans:wght@300&family=Jost:ital@1&family=Roboto:ital,wght@1,300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+.header {
+  height:8vh;
+    overflow: hidden;
+    background-color: #3d4f52;
+    /*padding: 20px 10px;*/
+       
+
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+  
+    
+  }
+  
+  /* Style the header links */
+  .header a {
+    display: flex;
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+  .header a.logo {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  /* Change the background color on mouse-over */
+  .header-right a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Style the active/current link*/
+  /*.header a.active {
+    background-color: dodgerblue;
+    color: white;
+  }s
+   */
+  
+
+  .imge_logo{
+    display: flex;
+  }
+  
+  /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+  @media screen and (max-width: 500px) {
+    .header a {
+    flex-direction: column;
+      
+    }
+    .header-right {
+      float: none;
+    }
+  }
+
+
+  {{!-- WEATHER PAGE --}}
+  #weather{
+  height: 84vh;
+   width:100vw;
+   margin-top: 0;
+  background-color: #4ec2d4;
+ 
+   
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   
+}
+
+  .main_div{
+    background-color:#3d4f52;
+    display: flex;
+    
+    flex-direction: column;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border-radius: 1rem ;
+    border: 4px solid #28231D;
+    box-shadow: 5px 10px 18px #089ac3;
+  }
+ .city{
+   margin: 1rem 0.5rem auto 0.5rem;
+ }
+  #name_city{
+    width: 70%;
+    height: 1.5rem;
+    font-size: 1.1rem ;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: 0.2rem solid black;
+   background-color:#3d4f52;
+   color: white;
+  }
+#submit{
+  width:4rem;
+  height: 2rem;
+  border-radius:2rem ;
+   padding: 0.5rem;
+   background-color:#3d4f52 ;
+   color:white ;
+}
+.output_div{
+  width: 99%;
+  font-size:1.1rem;
+  background-color: #3d4f52;
+  margin: 2rem  auto ;
+  display: flex;
+ justify-content: space-between;
+ color: white;
+}
+.output_temp{
+  display: flex;
+  flex-direction: column;
+  background-color:#3d4f52;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 3rem;
+
+}
+
+.output_temp #temp{
+  font-size: 2rem;
+  margin: 1rem auto auto 45%;
+}
+
+
+/* second output div for image*/
+#weatherimg_box{
+ min-height: 15rem;
+ min-width: 20rem;
+  background-color:#3d4f52;
+    display: flex;
+    flex-direction: column;
+    font-family: 'IBM Plex Sans', sans-serif;
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+       border: 4px solid #28231D;
+display: none;
+}
+#weather_img{
+  display: flex;
+  height: 10rem ;
+  width: 10rem;
+ background-image: url("https://www.animatedimages.org/data/media/278/animated-sun-image-0856.gif");
+ background-size: cover;
+  margin-bottom:1rem ;
+  background-color: #3d4f52;
+
+}
+.status_txt{
+ display: flex;
+ font-size: 2rem;
+ background-color: #3d4f52;
+justify-content: center;
+color: white;
+}
+
+ /*     HOME PAGE      */
+
+ .home{
+   height: 84vh;
+   width:100vw;
+   margin-top: 0;
+  
+  background-image: url("https://images.pexels.com/photos/2099737/pexels-photo-2099737.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");background-size:cover;
+ 
+  background-repeat: no-repeat;
+  animation: slider 9s infinite linear;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   
+
+   
+ }
+ @keyframes slider{
+   0%{background-image: url("https://images.pexels.com/photos/2099737/pexels-photo-2099737.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");background-size:cover}
+   25%{background-image: url("https://images.pexels.com/photos/219998/pexels-photo-219998.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");background-size:cover}
+    50%{background-image: url("https://images.pexels.com/photos/3680263/pexels-photo-3680263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");background-size:cover}
+   75%{background-image: url("https://images.pexels.com/photos/1004665/pexels-photo-1004665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");background-size:cover}
+  
+   
+ }
+
+
+ .text{
+  display: flex;
+  flex-direction: column;
+   color: #3d4f52;
+   font-size: 1.8rem;
+   font-weight: 700;
+   align-items: center;
+   font-family: 'IBM Plex Sans', sans-serif;
+ }
+.text #btn{
+  width: 8rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  border-radius: 5px;
+  
+   
+}
+.text #btn a{
+  text-decoration: none;
+  color: #104eb3;
+}
+   {{!-- footer css  --}}
+
+
+  body{
+    display: flex;
+    flex-direction: column;
+   min-height: 100vh;
+   
+}
+
+
+.main{
+     display: flex;
+     width: 100vw;
+     height:8vh;
+     margin-top: auto;
+     align-items: center;
+    justify-content: center;
+     background-color:#3d4f52;
+     font-size:1.4rem;
+   
+}
+
+
+/*  ABOUT US PAGE */
+.mai_n{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  
+  flex-direction: column;
+  height: 84vh;
+  width: 100vw;
+background-color: azure;
+}
+.about{
+ font-size: 1.8rem;
+ font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.about_box{
+  display: flex;
+  align-items: center;
+  margin: auto;
+ background-color: azure;
+  flex-direction: row;
+   width: 100vw;
+}
+.img_1{
+   display: flex;
+   height: 30rem;
+   width: 35rem;
+  align-items: center;
+  border-radius: 1rem;
+ background-image: url("https://thumbs.dreamstime.com/z/weather-icons-all-seasons-2965156.jpg");
+ background-size:cover;
+ margin-right:3rem ;
+}
+.text_box{
+  display: flex;
+   height: 30rem;
+   width: 35rem;
+   align-items: center;
+  
+   background-color: azure;
+    flex-direction: column;
+}
+.quote{
+margin-top: 2rem;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: 1.8rem;
+}
+.text_about{
+margin-top: 1rem;
+font-size: 1.3rem;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+  </style>
